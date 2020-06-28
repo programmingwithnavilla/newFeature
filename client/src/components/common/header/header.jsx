@@ -1,6 +1,7 @@
-import React from "react";
-import Button from "../../specifics/button";
+import React, { lazy, Suspense } from "react";
+const Button = lazy(() => import("../../specifics/Button"));
 
+// const Notice = () => createPortal('This renders outside the parent DOM node', document.getElementById("portal"));
 const Header = () => (
   <header
     className="col d-flex align-items-center p-3 justify-content-center  "
@@ -21,21 +22,26 @@ const Header = () => (
         <span className="px-3 d-flex justify-content-center">Orders</span>
         <span className="px-3 d-flex justify-content-center">Locations</span>
         <div className="px-1 d-flex justify-content-center">
-          <Button
-            label="Log In"
-            backgroundColor="black"
-            color="white"
-            width="60px"
-            height="30px"
-            className="border-0 font-small"
-          />
+          <Suspense fallback={<p>loading ...</p>}>
+            <Button
+              label="Log In"
+              backgroundColor="black"
+              color="white"
+              width="60px"
+              height="30px"
+              className="border-0 font-small"
+            />
+          </Suspense>
+
         </div>
         <div className="px-2 d-flex justify-content-center">
-          <Button
-            label="sign in"
-            backgroundColor="transparent"
-            className="border border-primary text-primary font-small"
-          />
+          <Suspense fallback={<p>loading ...</p>}>
+            <Button
+              label="sign in"
+              backgroundColor="transparent"
+              className="border border-primary text-primary font-small"
+            />
+          </Suspense>
         </div>
         <div className="px-2 d-flex justify-content-center">
           <i className="fas fa-shopping-basket text-primary  px-1 d-flex align-items-center justify-content-center font-giant"></i>
