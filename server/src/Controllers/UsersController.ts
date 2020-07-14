@@ -11,13 +11,20 @@ export class UsersController {
 
   private init(): void {
     this.router.get("/", this.getAll);
+    this.router.get("/id:id", this.getById)
   }
 
-  private getAll(req: Request, res: Response, next: NextFunction): void {
+  public getAll(req: Request, res: Response, next: NextFunction): void {
     res.send({
       firstName: "Navid",
       lastName: "Barsalari",
     });
+  }
+
+  public getById(req: Request, res: Response, next: NextFunction): void {
+    if (!req.params.id)
+      return res.status(404).json({ message: 'Not Found' });
+    res.send('Hello i am users controller');
   }
 }
 
